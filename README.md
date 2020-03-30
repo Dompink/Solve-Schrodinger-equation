@@ -1,5 +1,3 @@
-# Welcome to GitHub Desktop!
-
-This is your README. READMEs are where you can communicate what your project is and how to use it.
-
-Write your name on line 6, save it, and then head back to GitHub Desktop.
+# 求解薛定谔方程
+立个flag，争取4.20日前写完代码，求解H原子的薛定谔方程
+language：python
