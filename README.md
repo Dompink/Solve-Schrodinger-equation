@@ -24,3 +24,5 @@ $$f'=(f_{i+1}-2f_i+f_{i-1})/h^2$$
 ## 一维无限深方势阱/Infinite_Square_Well
 
 在m设为1，hbar设为1，势阱为-1/2到1/2的情况下，利用二阶差分求解薛定谔方程。
+
+## 一维有限深方势阱/Finite_Square_Well
