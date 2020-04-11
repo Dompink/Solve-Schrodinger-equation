@@ -16,24 +16,19 @@ h = x[1]-x[0] # Should be equal to 2*np.pi/(N-1)
 V = 0.*x
 Mdd = 1./(h*h)*(np.diag(np.ones(N-1),-1) -2* np.diag(np.ones(N),0) + np.diag(np.ones(N-1),1))
 H = -(hbar*hbar)/(2.0*m)*Mdd + np.diag(V) 
-E,psiT = np.linalg.eigh(H) # This computes the eigen values and eigenvectors，求特征值和特征向量
+E,psiT = np.linalg.eigh(H) # 求特征值和特征向量
 # psiT是ndarray类型，512*512的二维数组，用于存放同类型的一个多维数组对象。每一个元素在内存中都有相同大小的存储空间。
 # transpose对二维数组默认转置,因为H是对称矩阵，故H的转置等于H，又因为H是实矩阵，所以H*=H，综上，H是厄米矩阵
 psi = np.transpose(psiT)   # We take the transpose of psiT to the wavefunction vectors can accessed as psi[n]
 
-
-#多条线一起画
-#plot([x], y, [fmt], [x2], y2, [fmt2], ..., **kwargs)
-plt.figure(figsize=(10,7))
+# 一维无限深方势阱的波函数解为sinx，负值解并没有意义，所以判断波函数正负然后设为正值
 for i in range(5):
-    plt.plot(x,psi[i],label="$E_{}$={:>8.3f}".format(i,E[i]))
+    if psi[i][N-10] < 0:   
+        plt.plot(x,-psi[i]/np.sqrt(h),label="$E_{}$={:>8.3f}".format(i,E[i]))
+    else:
+        plt.plot(x,psi[i]/np.sqrt(h),label="$E_{}$={:>8.3f}".format(i,E[i]))
     plt.title("Solutions to the Infinite Square Well")
-#for i in range(5):
-#    if psi[i][N-10] < 0:   # Flip the wavefunctions if it is negative at large x, so plots are more consistent.
-#        plt.plot(x,-psi[i]/np.sqrt(h),label="$E_{}$={:>8.3f}".format(i,E[i]))
-#    else:
-#        plt.plot(x,psi[i]/np.sqrt(h),label="$E_{}$={:>8.3f}".format(i,E[i]))
-#    plt.title("Solutions to the Infinite Square Well")
-#plt.legend()
+
+plt.legend()
 #plt.savefig("Infinite_Square_Well_WaveFunctions.pdf")
 plt.show()
